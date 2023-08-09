@@ -1,0 +1,456 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    list-style-type: none;
+}
+
+:root {
+    --color-black: #000;
+    --Orange: hsl(26, 100%, 55%);
+    --Pale-orange: hsl(24, 78%, 86%);
+    --Very-dark-blue: hsl(220, 13%, 13%);
+    --Dark-grayish-blue: hsl(219, 9%, 45%);
+    --Grayish-blue: hsl(220, 14%, 75%);
+    --Light-grayish-blue: hsla(180, 1%, 81%, .5);
+    --White: hsl(0, 0%, 100%);
+    /* --Black (with 75% opacity for lightbox background): hsl(0, 0%, 0%) */
+}
+
+body {
+    min-height: 100svh;
+    font-family: Kumbh-Sans-regular;
+    display: grid;
+    grid-template-rows: 100px 1fr 40px;
+    line-height: 1.2;
+}
+
+@font-face {
+    font-family: Kumbh-Sans-regular;
+    src: url(../static/KumbhSans-Regular.ttf);
+}
+
+@font-face {
+    font-family: Kumbh-Sans-bold;
+    src: url(../static/KumbhSans-Bold.ttf);
+}
+
+
+.flexrow {
+    display: flex;
+    align-items: center;
+}
+
+
+.gridrow {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4em;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.navigation-bar {
+    gap: 4rem;
+    border-bottom: 1px solid var(--Grayish-blue);
+}
+
+img {
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mobile-nav-toggle {
+    display: none;
+}
+
+span.sr-only{
+    display: block;
+    width: 1px;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+}
+
+nav ul {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.nav-link {
+    display: inline-block;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-link:hover::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: var(--Orange);
+    left: 0;
+    bottom: 0;
+}
+
+.nav-link+.nav-link {
+    margin-left: 1.5rem;
+}
+
+.nav-link a {
+    color: var(--Dark-grayish-blue);
+    text-decoration: none;
+}
+
+.nav-icons__container {
+    margin-left: auto;
+    gap: 2em;
+}
+
+.img-avatar {
+    width: 45px;
+    border-radius: 100%;
+}
+.img-avatar:hover {
+    border: 2px solid var(--Orange);
+}
+
+.cart-icon-container{
+    position: relative;
+    cursor: pointer;
+}
+
+.number-of-product-in-cart-container{
+    position: absolute;
+    background-color: var(--Orange);
+    padding: 1px 6px;
+    border-radius: 100%;
+    top: -6px;
+    right: -7px;
+    display: none;
+}
+
+.number-of-product-in-cart-container p{
+    font-size: 10px;
+    color: var(--White);
+}
+
+.cart-box{
+    position: absolute;
+    top: 5.2rem;
+    right: 9rem;
+    width: 280px;
+    background: var(--White);
+    box-shadow: 2px 5px 15px var(--Light-grayish-blue), 0px 0px 10px var(--Light-grayish-blue);
+    border-radius: 8px;
+    display: none;
+    z-index: 1000;
+}
+
+.cart-box[aria-expanded = true]{
+    display: block;
+}
+
+
+.cart-heading{
+    padding-block: 1rem;
+    padding-inline: .5rem;
+    color: var(--color-black);
+    border-bottom: 1px solid var(--Grayish-blue);
+}
+
+.cart-wrapper{
+    padding: .5rem 1rem 1rem;
+    font-size: 13px;
+}
+
+.cart-items{
+    height: 100px;
+    justify-content: center;
+    color: var(--Dark-grayish-blue);
+}
+.Checkout-cart,
+.in-cart-product-container{
+    display: none;
+}
+.in-cart-product-container{
+    gap: .6em;
+}
+
+.product-name-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 35px;
+}
+
+.total-price{
+    font-weight: bold;
+    color: #000;
+}
+
+.in-cart-product__image,
+.in-cart-product__image img{
+    border-radius: 5px;
+}
+
+.in-cart-product__image{
+    width: 40px;
+}
+
+.Checkout-cart{
+    width: 100%;
+}
+
+main {
+    padding: 3rem;
+}
+
+/* SNEAKER IMAGE PREVIEW */
+
+.product-preview__container {
+    gap: 2rem;
+    flex-direction: column;
+    padding-inline: 0 5.5rem;
+}
+
+.product-preview {
+    height: 320px;
+    cursor: pointer;
+}
+
+.product_pop-out {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    height: 500px;
+    z-index: 1000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 2rem;
+}
+
+.product_pop-out__image {
+    height: 80%;
+    margin: 0 auto;
+    border-radius: 12px;
+
+}
+
+.product-thumbnail__container-PO.pop-out {
+    width: 85%;
+    gap: 1rem;
+}
+
+.product-thumbnail_image-popOut,
+.product-thumbnail__container-PO.pop-out {
+    border-radius: 12px;
+}
+
+.close-popOut {
+    position: fixed;
+    width: 18px;
+    height: 18px;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    fill: var(--White);
+}
+.close-popOut:hover {
+    fill: var(--Orange);
+}
+
+.nav-btn{
+    position: absolute;
+    top: 42%;
+    padding: 11px 15px;
+    border-radius: 100%;
+    transform: translateY(-50%);
+    background: var(--White);
+    cursor: pointer;
+    stroke: var(--color-black);
+}
+
+.nav-btn:hover{
+    stroke: var(--Orange);
+}
+.prev{
+    left: -20px;
+}
+.next{
+    right: -20px;
+    
+}
+
+.add-to-cart:hover{
+    background:hsla(26, 100%, 55%, .8) ;
+}
+
+
+.product-thumbnail__container {
+    padding-inline: .3em;
+    gap: 1rem;
+    line-height: 0;
+}
+
+.product-thumbnail__container-PO{
+    line-height: 0;
+}
+
+.product-thumbnail,
+.product-thumbnail-popOut {
+    position: relative;
+    cursor: pointer;
+}
+
+.product-thumbnail.overlay::after,
+.product-thumbnail-popOut.overlay::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: hsla(0, 0%, 100%, .7);
+    height: 100%;
+    width: 100%;
+    border-radius: 12px;
+    border: 2px solid var(--Orange);
+}
+
+.product-preview,
+.product-thumbnail,
+.product-preview img,
+.product-thumbnail img,
+.cart-toggle,
+.add-to-cart,
+.Checkout-cart {
+    border-radius: 12px;
+}
+
+
+/* SNEAKER ARTICLE */
+
+.company {
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--Orange);
+    letter-spacing: 2px;
+}
+
+header .Title {
+    margin-block: 1rem;
+    font-size: 2rem;
+    letter-spacing: 1.5px;
+    font-family: Kumbh-Sans-bold;
+}
+
+.sneakers-article {
+    color: var(--Dark-grayish-blue);
+    margin-bottom: 1rem;
+}
+
+.price-wrapper{
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.price-container {
+    gap: 1rem;
+}
+
+.price-percentage {
+    background: var(--Pale-orange);
+    font-size: 14px;
+    color: var(--Orange);
+    box-shadow: 1px 1px 2px var(--Light-grayish-blue);
+    padding: 2px;
+    font-weight: bold;
+    margin-block: .7rem;
+}
+
+.previous-price {
+    color: var(--Grayish-blue);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.order-nav {
+    width: 100%;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-direction: row;
+}
+
+.cart-toggle {
+    width: 40%;
+    padding: .7rem 0;
+    justify-content: space-around;
+    background: var(--Light-grayish-blue);
+}
+.decreement,
+.increment{
+    cursor: pointer;
+    height: 100%;
+}
+
+.Checkout-cart,
+.add-to-cart{
+    padding: .8rem 0;
+    background: var(--Orange);
+    color: #fff;
+    font-weight: bold;
+}
+
+.add-to-cart {
+    width: 60%;
+    justify-content: center;
+    gap: 1em;
+    cursor: pointer;
+    box-shadow: 0px 12px 15px hsla(26, 100%, 55%, .4) ;
+}
+
+.add-to-cart .img-cart {
+    width: 20px;
+    color: #fff;
+}
+
+.body-overlay.active {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: hsla(0, 0%, 0%, .6);
+}
+
+.attribution {
+    font-size: 11px;
+    text-align: center;
+    padding-bottom: 2rem;
+}
+
+.attribution a {
+    color: hsl(228, 45%, 44%);
+}
